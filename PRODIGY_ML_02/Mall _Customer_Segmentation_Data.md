@@ -1,6 +1,8 @@
 **Importing the necessary libraries**
 
-``import pandas as pd
+```python
+
+import pandas as pd
 
 from sklearn.preprocessing import StandardScaler
 
