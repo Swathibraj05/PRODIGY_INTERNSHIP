@@ -1,37 +1,52 @@
 **Importing the necessary libraries**
+
 ``
-import pandas as pd  # For data manipulation
-from sklearn.preprocessing import StandardScaler  # For normalizing the data
-from sklearn.cluster import KMeans  # For K-Means clustering
-import matplotlib.pyplot as plt  # For plotting
-import seaborn as sns  # For enhanced data visualization
+
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+import seaborn as sns 
 ``
 
 **Loading the dataset**
 ``
+
 data = pd.read_csv(r'/content/Mall_Customers.csv')
 print(data.head())
-# Select the relevant columns for clustering
 X = data[['Age', 'Annual Income (k$)', 'Spending Score (1-100)']]
+
 ``
+![image](https://github.com/user-attachments/assets/95d0e9e3-4f4a-4f5f-b312-30d2973e1240)
+
 
 **Normalising the data using scaler object and displaying the scaled data**
 ``
-scaler = StandardScaler()  # Create a scaler object
-X_scaled = scaler.fit_transform(X)  # Fit and transform the data
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
 print(X_scaled[:5])
 ``
 
+![image](https://github.com/user-attachments/assets/97e4ec21-6a2c-4101-bd23-efe56e36fe6c)
+
+
 **Applying K-Means clustering algorithm by creating a KMeans object with 5 clusters and n_init set to 10 and fitting the model and predicting cluster labels**
 ``
+
 kmeans = KMeans(n_clusters=5, random_state=42, n_init=10)
 clusters = kmeans.fit_predict(X_scaled)
 data['Cluster'] = clusters
 print(data.head())
+
 ``
+
+![image](https://github.com/user-attachments/assets/0d7c79a1-d8ae-4025-8f0b-f3ff00f12867)
+
 
 **Visualising the clusters by importing matplotlib.pyplot for plotting**
 ``
+
 plt.figure(figsize=(10, 6))  # Set the size of the plot
 sns.scatterplot(x='Annual Income (k$)', y='Spending Score (1-100)', hue='Cluster', data=data, palette='viridis', s=100)
 plt.title('Customer Segments based on Annual Income and Spending Score')
