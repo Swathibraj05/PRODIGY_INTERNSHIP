@@ -11,16 +11,20 @@ from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 
 import seaborn as sns 
-
+```
 
 
 **Loading the dataset**
 
-``data = pd.read_csv(r'/content/Mall_Customers.csv')
+```python
+
+data = pd.read_csv(r'/content/Mall_Customers.csv')
 
 print(data.head())
 
-X = data[['Age', 'Annual Income (k$)', 'Spending Score (1-100)']]``
+X = data[['Age', 'Annual Income (k$)', 'Spending Score (1-100)']]
+```
+
 ![image](https://github.com/user-attachments/assets/95d0e9e3-4f4a-4f5f-b312-30d2973e1240)
 
 
