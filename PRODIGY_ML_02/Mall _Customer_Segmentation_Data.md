@@ -1,19 +1,23 @@
 **Importing the necessary libraries**
 
 ``
-
 import pandas as pd
+
 from sklearn.preprocessing import StandardScaler
+
 from sklearn.cluster import KMeans
+
 import matplotlib.pyplot as plt
+
 import seaborn as sns 
 ``
 
 **Loading the dataset**
 ``
-
 data = pd.read_csv(r'/content/Mall_Customers.csv')
+
 print(data.head())
+
 X = data[['Age', 'Annual Income (k$)', 'Spending Score (1-100)']]
 
 ``
@@ -22,9 +26,10 @@ X = data[['Age', 'Annual Income (k$)', 'Spending Score (1-100)']]
 
 **Normalising the data using scaler object and displaying the scaled data**
 ``
-
 scaler = StandardScaler()
+
 X_scaled = scaler.fit_transform(X)
+
 print(X_scaled[:5])
 ``
 
@@ -33,10 +38,12 @@ print(X_scaled[:5])
 
 **Applying K-Means clustering algorithm by creating a KMeans object with 5 clusters and n_init set to 10 and fitting the model and predicting cluster labels**
 ``
-
 kmeans = KMeans(n_clusters=5, random_state=42, n_init=10)
+
 clusters = kmeans.fit_predict(X_scaled)
+
 data['Cluster'] = clusters
+
 print(data.head())
 
 ``
@@ -46,13 +53,18 @@ print(data.head())
 
 **Visualising the clusters by importing matplotlib.pyplot for plotting**
 ``
+plt.figure(figsize=(10, 6))
 
-plt.figure(figsize=(10, 6))  # Set the size of the plot
 sns.scatterplot(x='Annual Income (k$)', y='Spending Score (1-100)', hue='Cluster', data=data, palette='viridis', s=100)
+
 plt.title('Customer Segments based on Annual Income and Spending Score')
+
 plt.xlabel('Annual Income (k$)')
+
 plt.ylabel('Spending Score (1-100)')
+
 plt.legend(title='Cluster')
+
 plt.show()
 ``
 
